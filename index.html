@@ -120,32 +120,15 @@
         </section>
         <!-- learn vocabularies -->
          <section class="learn-vocabularies-section">
-            <!-- lessons of vocabularies -->
-            <div class="vocabularies flex justify-center items-center">
+            <!-- title of vocabularies -->
+            <div class="title flex justify-center items-center">
                 <h1 class="font-bold text-2xl mb-[35px]">
                     <span class="text-sky-400">Let's</span> Learn Vocabulary
                 </h1>
             </div>
-            <!-- words of vocabularies -->
-            <div class="words flex justify-center items-center gap-5">
-                <button class="btn btn-outline btn-primary">
-                 <i class="fa-solid fa-circle-question"></i>FAQ
-                </button>
-                <button class="btn btn-outline btn-primary">
-                 <i class="fa-solid fa-circle-question"></i>FAQ
-                </button>
-                <button class="btn btn-outline btn-primary">
-                 <i class="fa-solid fa-circle-question"></i>FAQ
-                </button>
-                <button class="btn btn-outline btn-primary">
-                 <i class="fa-solid fa-circle-question"></i>FAQ
-                </button>
-                <button class="btn btn-outline btn-primary">
-                 <i class="fa-solid fa-circle-question"></i>FAQ
-                </button>
-                <button class="btn btn-outline btn-primary">
-                 <i class="fa-solid fa-circle-question"></i>FAQ
-                </button>
+            <!-- lessons of vocabularies -->
+            <div id="lesson-container" class="words flex justify-center items-center gap-5 flex-wrap ">
+                
             </div>
          </section>
          <!-- select lessons -->
@@ -153,25 +136,11 @@
             <p class="font-normal text-[14px] text-gray-500">আপনি এখনো কোন Lesson Select করেন</p>
             <h2 class="font-medium text-[34px]">একটি Lesson Select করুন।</h2>
           </section>
-          <!-- select words -->
-          <section class="word-card-container bg-gray-100  rounded-xl mt-10 p-7 grid grid-cols-3 gap-[30px]">
-            <div class="word-card bg-white py-12 px-8 rounded-xl  ">
-                <p class="font-bold text-8  text-center">Eager</p>
-                <p class="font-medium text-5 text-gray-700 text-center my-2">Meaning/Pronunciation</p>
-                <p class="font-semibold text-8 text-center">agrohi/egar</p>
-                <!-- i button and speaker button -->
-                <div class="flex flex-row justify-between mt-14">
-                    <!-- i button -->
-                    <div class="i-button p-4 rounded-2xl bg-sky-100">
-                        <img class="w-5" src="assets/i-button.png" alt="">
-                    </div>
-                    <!-- speaker option -->
-                    <div class="speaker-button p-4 rounded-2xl bg-sky-100">
-                        <img class="w-5" src="assets/speaker-button.png" alt="">
-                    </div>
-                </div>
-            </div>
+
+          <section id="showWord"  class="word-card-container bg-gray-100  rounded-xl mt-10 p-7 gap-[30px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            
           </section>
      </main>
+     <script src="sctipt.js"></script>
   </body>
 </html>
