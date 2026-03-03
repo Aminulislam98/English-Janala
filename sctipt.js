@@ -20,6 +20,7 @@ const showLesson = (value) => {
   lessons.innerHTML = html;
 };
 const loadAllWords = (id) => {
+  showLoadingIfLate(true);
   const url = `https://openapi.programming-hero.com/api/level/${id}`;
   fetch(url)
     .then((response) => response.json())
@@ -78,6 +79,7 @@ const showAllWord = (valueOfWord) => {
     `;
     show.innerHTML = html;
   });
+  showLoadingIfLate(false);
 };
 // load word details in modal
 const loadWordDetails = (wordDetailId) => {
@@ -110,4 +112,23 @@ const showWordDetail = (detailId) => {
     `;
   });
   synonymsContainer.innerHTML = html;
+};
+// loading of words cards
+
+const showLoadingIfLate = (status) => {
+  if (status == true) {
+    // loading
+    const loading = document.getElementById("loading");
+    loading.classList.remove("hidden");
+    const disclaimerSelectLesson = document.getElementById(
+      "disclaimer-select-lesson",
+    );
+    disclaimerSelectLesson.classList.add("hidden");
+    const showWord = document.getElementById("showWord");
+    showWord.classList.add("hidden");
+  } else {
+    // loading
+    const loading = document.getElementById("loading");
+    loading.classList.add("hidden");
+  }
 };
