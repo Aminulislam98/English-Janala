@@ -93,25 +93,37 @@ const loadWordDetails = (wordDetailId) => {
 const showWordDetail = (detailId) => {
   console.log(detailId);
   document.getElementById("my_modal").showModal();
-  // modal title
-  const modalTitle = document.getElementById("title");
-  modalTitle.innerText = `${detailId.word}`;
-  // modal meaning
-  const meaning = document.getElementById("meaning");
-  meaning.innerText = `${detailId.meaning}`;
-  // modal example
-  const example = document.getElementById("example");
-  example.innerText = `${detailId.sentence}`;
+  const showModal = document.getElementById("showModal");
+  let html = `
+      <div>
+            <h3  class="text-3xl font-bold mb-4 flex justify-start items-center">
+            <span id="title">${detailId.word}</span>
+               (<img class="w-[30px]" src="assets/mike.png" alt="">
+            <span id="pronunciation"> :${detailId.pronunciation}</span>)
+          </h3>
+          <p class="font-semibold text-6">Meaning</p>
+          <p id="meaning" class="pb-4">${detailId.meaning}</p>
+          <p class="font-semibold text-6">Example</p>
+          <p id="example" class="pb-4">${detailId.sentence}</p>
+          <p class="font-semibold text-6">সমার্থক শব্দ গুলো</p>
+          <div id="synonym-container" class="pt-1">
+          </div>
+      </div>
+  
+  `;
+  showModal.innerHTML = html;
+
+  // synonym loop
+  let renderSynonym = "";
   let synonym = detailId.synonyms;
-  let html = "";
   const synonymsContainer = document.getElementById("synonym-container");
   synonym.forEach((word) => {
-    html += `
+    renderSynonym += `
     <button class="px-5 py-1 rounded-md bg-sky-50 border border-gray-400
     hover:bg-sky-100 cursor-pointer">${word}</button>
     `;
   });
-  synonymsContainer.innerHTML = html;
+  synonymsContainer.innerHTML = renderSynonym;
 };
 // loading of words cards
 
