@@ -30,6 +30,24 @@ const loadAllWords = (id) => {
 };
 const showAllWord = (valueOfWord) => {
   const show = document.getElementById("showWord");
+  if (valueOfWord.length > 0) {
+    show.classList.remove("hidden");
+  }
+  let disclaimerSelectLesson = document.getElementById(
+    "disclaimer-select-lesson",
+  );
+  disclaimerSelectLesson.classList.add("hidden");
+  // add class list and remove lesson not selected and lesson does not have any word
+  if (valueOfWord.length == 0) {
+    show.classList.add("hidden");
+    const imgAlert = document.getElementById("img-alert");
+    imgAlert.classList.remove("hidden");
+    disclaimerSelectLesson.classList.remove("hidden");
+    const alert2 = document.getElementById("alert2");
+    alert2.innerText = "এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।";
+    const alert1 = document.getElementById("alert1");
+    alert1.innerText = "";
+  }
 
   let html = "";
   valueOfWord.forEach((wordValue) => {
