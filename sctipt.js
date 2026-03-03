@@ -60,6 +60,8 @@ const showAllWord = (valueOfWord) => {
     alert2.innerText = "এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।";
     const alert1 = document.getElementById("alert1");
     alert1.innerText = "";
+    const noWordAvailable = document.getElementById("noWordAvailable");
+    noWordAvailable.classList.add("hidden");
     showLoadingIfLate(false);
     return;
   }
