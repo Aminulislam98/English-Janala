@@ -39,6 +39,10 @@ const removeButtonActive = () => {
   });
 };
 const showAllWord = (valueOfWord) => {
+  let disclaimerSelectLesson = document.getElementById(
+    "disclaimer-select-lesson",
+  );
+  disclaimerSelectLesson.classList.add("hidden");
   const show = document.getElementById("showWord");
   if (valueOfWord.length > 0) {
     show.classList.remove("hidden");
@@ -46,10 +50,6 @@ const showAllWord = (valueOfWord) => {
     const noWordAvailable = document.getElementById("noWordAvailable");
     noWordAvailable.classList.add("hidden");
   }
-  let disclaimerSelectLesson = document.getElementById(
-    "disclaimer-select-lesson",
-  );
-  disclaimerSelectLesson.classList.add("hidden");
   // add class list and remove lesson not selected and lesson does not have any word
   if (valueOfWord.length == 0) {
     show.classList.add("hidden");
@@ -76,7 +76,7 @@ const showAllWord = (valueOfWord) => {
         <button onclick="loadWordDetails(${wordValue.id})" class="i-button p-4 rounded-2xl bg-sky-100 hover:bg-green-500 active:bg-green-400 cursor-pointer transition-all duration-200 ease-in-out">
             <img class="w-5" src="assets/i-button.png" alt="">
         </button>  
-        <button class="speaker-button p-4 rounded-2xl bg-sky-100 hover:bg-green-500 active:bg-green-400 cursor-pointer transition-all duration-200 ease-in-out">
+        <button onclick="pronounceWord('${wordValue.word}')" class="speaker-button p-4 rounded-2xl bg-sky-100 hover:bg-green-500 active:bg-green-400 cursor-pointer transition-all duration-200 ease-in-out">
             <img class="w-5" src="assets/speaker-button.png" alt="">
         </button>
       </div>
@@ -130,6 +130,75 @@ const showWordDetail = (detailId) => {
   });
   synonymsContainer.innerHTML = renderSynonym;
 };
+
+// pronounceWord
+function pronounceWord(word) {
+  const synth = window.speechSynthesis;
+
+  // Stop any previous speech so clicks don't overlap
+  synth.cancel();
+
+  const text = String(word ?? "").trim();
+  if (!text) return;
+
+  const utterance = new SpeechSynthesisUtterance(text);
+
+  // ✅ British English locale
+  utterance.lang = "en-GB";
+
+  // ✅ Clarity tweaks (adjust if you want)
+  utterance.volume = 1; // 0 to 1
+  utterance.rate = 0.92; // slightly slower = clearer
+  utterance.pitch = 1; // 0 to 2
+
+  // Choose the most natural-sounding UK voice available
+  const pickBestUKVoice = (voices) => {
+    const ukVoices = voices.filter((v) =>
+      (v.lang || "").toLowerCase().startsWith("en-gb"),
+    );
+
+    // Prefer higher quality voices (common naming patterns)
+    const preferred = [
+      /google.*(uk|british|english)/i,
+      /(microsoft|ms).*?(natural|online|neural)/i,
+      /natural/i,
+      /neural/i,
+      /(uk|british)/i,
+    ];
+
+    for (const rx of preferred) {
+      const match = ukVoices.find((v) => rx.test(v.name));
+      if (match) return match;
+    }
+
+    // Fallback: any en-GB voice
+    if (ukVoices.length) return ukVoices[0];
+
+    // Fallback: any English voice
+    return (
+      voices.find((v) => (v.lang || "").toLowerCase().startsWith("en")) || null
+    );
+  };
+
+  const speakWithBestVoice = () => {
+    const voices = synth.getVoices();
+    const best = pickBestUKVoice(voices);
+    if (best) utterance.voice = best;
+    synth.speak(utterance);
+  };
+
+  // Chrome may load voices asynchronously
+  if (synth.getVoices().length === 0) {
+    const onVoices = () => {
+      synth.removeEventListener("voiceschanged", onVoices);
+      speakWithBestVoice();
+    };
+    synth.addEventListener("voiceschanged", onVoices);
+  } else {
+    speakWithBestVoice();
+  }
+}
+
 // loading of words cards
 
 const showLoadingIfLate = (status) => {
