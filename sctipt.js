@@ -36,17 +36,17 @@ const showAllWord = (valueOfWord) => {
     console.log(wordValue.word);
     html += `
     <div class="word-card bg-white p-6 rounded-xl shadow flex flex-col">
-        <p class="font-bold text-2xl  text-center">${wordValue.word}</p>
-        <p class="font-medium text-5 text-gray-700 text-center my-2">Meaning / Pronunciation</p>
-        <p class="font-semibold text-gray-700 text-2xl text-center">${wordValue.meaning} / ${wordValue.pronunciation}</p>
-        <div class="flex flex-row justify-between mt-auto pt-10">                   
-            <button class="i-button p-4 rounded-2xl bg-sky-100 hover:bg-sky-200">
-                <img class="w-5" src="assets/i-button.png" alt="">
-            </button>  
-            <button class="speaker-button p-4 rounded-2xl bg-sky-100 hover:bg-sky-200">
-                <img class="w-5" src="assets/speaker-button.png" alt="">
-            </button>
-        </div>
+      <p class="font-bold text-2xl  text-center">${wordValue.word ? wordValue.word : "দুঃখিত,শব্দ পাওয়া যায়নি।"}</p>
+      <p class="font-medium text-5 text-gray-700 text-center my-2">Meaning / Pronunciation</p>
+      <p class="font-semibold text-gray-700 text-2xl text-center">${wordValue.meaning ? wordValue.meaning : "দুঃখিত,অর্থ পাওয়া যায়নি"} / ${wordValue.pronunciation ? wordValue.pronunciation : "দুঃখিত, উচ্চারণ পাওয়া যায়নি।"}</p>
+      <div class="flex flex-row justify-between mt-auto pt-10">                   
+        <button class="i-button p-4 rounded-2xl bg-sky-100 hover:bg-green-500 active:bg-green-400 cursor-pointer transition-all duration-200 ease-in-out">
+            <img class="w-5" src="assets/i-button.png" alt="">
+        </button>  
+        <button class="speaker-button p-4 rounded-2xl bg-sky-100 hover:bg-green-500 active:bg-green-400 cursor-pointer transition-all duration-200 ease-in-out">
+            <img class="w-5" src="assets/speaker-button.png" alt="">
+        </button>
+      </div>
     </div>
     `;
     show.innerHTML = html;
