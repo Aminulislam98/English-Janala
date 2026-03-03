@@ -42,6 +42,9 @@ const showAllWord = (valueOfWord) => {
   const show = document.getElementById("showWord");
   if (valueOfWord.length > 0) {
     show.classList.remove("hidden");
+
+    const noWordAvailable = document.getElementById("noWordAvailable");
+    noWordAvailable.classList.add("hidden");
   }
   let disclaimerSelectLesson = document.getElementById(
     "disclaimer-select-lesson",
@@ -57,6 +60,8 @@ const showAllWord = (valueOfWord) => {
     alert2.innerText = "এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।";
     const alert1 = document.getElementById("alert1");
     alert1.innerText = "";
+    showLoadingIfLate(false);
+    return;
   }
 
   let html = "";
@@ -106,7 +111,7 @@ const showWordDetail = (detailId) => {
           <p class="font-semibold text-6">Example</p>
           <p id="example" class="pb-4">${detailId.sentence}</p>
           <p class="font-semibold text-6">সমার্থক শব্দ গুলো</p>
-          <div id="synonym-container" class="pt-1 space-x-2">
+          <div id="synonym-container" class="pt-1 space-x-2 flex flex-wrap">
           </div>
       </div>
   
@@ -138,9 +143,41 @@ const showLoadingIfLate = (status) => {
     disclaimerSelectLesson.classList.add("hidden");
     const showWord = document.getElementById("showWord");
     showWord.classList.add("hidden");
+    return;
   } else {
     // loading
     const loading = document.getElementById("loading");
     loading.classList.add("hidden");
   }
 };
+// search vocabularies
+document.getElementById("search-button").addEventListener("click", () => {
+  const inputValue = document.getElementById("inputValue");
+  const searchWord = inputValue.value.trim().toLowerCase();
+  if (searchWord) {
+    const url = "https://openapi.programming-hero.com/api/words/all";
+    fetch(url)
+      .then((response) => response.json())
+      .then((allWord) => {
+        const allWords = allWord.data;
+        const matchWord = allWords.filter((word) =>
+          word.word.toLowerCase().includes(searchWord),
+        );
+
+        showAllWord(matchWord);
+        removeButtonActive();
+      });
+    return;
+  } else {
+    removeButtonActive();
+    const show = document.getElementById("showWord");
+    show.classList.add("hidden");
+    const noWordAvailable = document.getElementById("noWordAvailable");
+    noWordAvailable.classList.remove("hidden");
+
+    let disclaimerSelectLesson = document.getElementById(
+      "disclaimer-select-lesson",
+    );
+    disclaimerSelectLesson.classList.add("hidden");
+  }
+});

@@ -31,12 +31,12 @@
     <!-- stylesheet -->
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body class="no-scrollbar">
     <!-- header -->
-    <header class="header sticky top-0 shadow-sm bg-sky-50">
-      <div class="navbar bg-base-100 w-full sm:w-11/12 mx-auto p-0  bg-sky-5 flex justify-between items-center">
+    <header class="header sticky top-0 shadow-sm ">
+      <div class="navbar bg-base-100 w-full sm:w-11/12 mx-auto p-0 flex justify-between items-center">
         <!-- navbar start -->
-        <div class="navbar-start w-full flex justify-between items-center">
+        <div class="navbar-start w-full flex justify-between lg:justify-start items-center">
           <div class="dropdown">
             <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
               <svg
@@ -131,6 +131,15 @@
                 
             </div>
          </section>
+         <!-- search -->
+          <div class="join flex justify-center items-center mt-10">
+            <div>
+              <label class="input validator join-item">
+                <input id="inputValue" type="text" placeholder="Search Vocabulary" required />
+              </label>
+            </div>
+              <button id="search-button" class="btn btn-primary">Search</button>
+            </div>
          <!-- loading -->
               <span id="loading" class="loading loading-bars loading-xl flex justify-center items-center mx-auto mt-10 hidden"></span>
           
@@ -139,6 +148,11 @@
             <img id="img-alert" class="hidden" src="assets/alert-error.png" alt="">
             <p id="alert1" class="hind-siliguri-light font-normal md:text-[20px] text-gray-500">শুরু করার জন্য একটি লেসন নির্বাচন করুন।</p>
             <h2 id="alert2" class="hind-siliguri-light font-medium text-[25px] md:text-[40px] text-center">একটি Lesson Select করুন।</h2>
+          </section>
+          <!-- select lessons disclaimer-->
+          <section id="noWordAvailable" class="select-lessons bg-gray-100 flex flex-col justify-center items-center py-16 rounded-xl mt-10 hidden">
+            <img id="img-alert" class="hidden" src="assets/alert-error.png" alt="">
+            <h2 id="alert2" class="hind-siliguri-light font-medium text-[25px] md:text-[40px] text-center">কোনো শব্দ পাওয়া যায়নি।</h2>
           </section>
       
 
@@ -157,7 +171,7 @@
           <div class="modal-action">
             <form method="dialog">
               <!-- if there is a button in form, it will close the modal -->
-              <button class="btn">Close</button>
+              <button class="btn btn-outline btn-primary">Close</button>
             </form>
           </div>
         </div>
