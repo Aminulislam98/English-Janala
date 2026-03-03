@@ -135,13 +135,35 @@
           <section id="disclaimer-select-lesson" class="select-lessons bg-gray-100 flex flex-col justify-center items-center py-16 rounded-xl mt-10 ">
             <img id="img-alert" class="hidden" src="assets/alert-error.png" alt="">
             <p id="alert1" class="hind-siliguri-light font-normal md:text-[20px] text-gray-500">শুরু করার জন্য একটি লেসন নির্বাচন করুন।</p>
-            <h2 id="alert2" class="hind-siliguri-light font-medium text-[25px] md:text-[40px]">একটি Lesson Select করুন।</h2>
+            <h2 id="alert2" class="hind-siliguri-light font-medium text-[25px] md:text-[40px] text-center">একটি Lesson Select করুন।</h2>
           </section>
 
           <section id="showWord"  class="word-card-container bg-gray-100  rounded-xl mt-10 p-7 gap-[30px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 hidden">
             
           </section>
      </main>
+    
+     <!-- Modal to see more info about word -->
+      <dialog id="my_modal" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+          <h3 id="title" class="text-lg font-bold mb-4 ">Hello!</h3>
+          <p>Meaning</p>
+          <p id="meaning" class="pb-4"></p>
+          <p>Example</p>
+          <p id="example" class="pb-4"></p>
+          <p>সমার্থক শব্দ গুলো</p>
+          <div id="synonym-container" class="pt-1">
+            <button id="Synonym"></button>
+          </div>
+          <div class="modal-action">
+            <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
+      
      <script src="sctipt.js"></script>
   </body>
 </html>

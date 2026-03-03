@@ -5,3 +5,7 @@
   font-family: "Hind Siliguri", sans-serif;
 }
 @import "tailwindcss";
+.active {
+  background-color: #422ad5;
+  color: white;
+}
