@@ -97,16 +97,16 @@ const showWordDetail = (detailId) => {
   let html = `
       <div>
             <h3  class="text-3xl font-bold mb-4 flex justify-start items-center">
-            <span id="title">${detailId.word}</span>
-               (<img class="w-[30px]" src="assets/mike.png" alt="">
-            <span id="pronunciation"> :${detailId.pronunciation}</span>)
+            ${detailId.word}
+               ( <img class="w-[30px]" src="assets/mike.png" alt="">  
+             : ${detailId.pronunciation})
           </h3>
           <p class="font-semibold text-6">Meaning</p>
           <p id="meaning" class="pb-4">${detailId.meaning}</p>
           <p class="font-semibold text-6">Example</p>
           <p id="example" class="pb-4">${detailId.sentence}</p>
           <p class="font-semibold text-6">সমার্থক শব্দ গুলো</p>
-          <div id="synonym-container" class="pt-1">
+          <div id="synonym-container" class="pt-1 space-x-2">
           </div>
       </div>
   
